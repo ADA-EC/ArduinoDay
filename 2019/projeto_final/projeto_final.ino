@@ -24,9 +24,15 @@
 #define ESP_SUB_ROLE
 
 //Pinos
-#define LED_VERDE 13
-#define LED_VERMELHO 12
-#define LED_AMARELO 15
+#define LED_VERDE_1 12
+#define LED_VERDE_2 13
+#define LED_VERDE_3 15
+#define LED_VERMELHO_1 0
+#define LED_VERMELHO_2 2
+#define LED_VERMELHO_3 14
+#define LED_AMARELO_1 16
+#define LED_AMARELO_2 5
+#define LED_AMARELO_3 4
 
 WiFiClient wifi_client;
 PubSubClient mqtt_client(wifi_client, MQTT_SERVER, MQTT_BROKER_PORT);
@@ -68,19 +74,37 @@ void mqtt_callback(const MQTT::Publish& pub){
       String cor = pub.payload_string();
       
       if(cor == "1"){
-        digitalWrite(LED_VERDE, HIGH);
-        digitalWrite(LED_VERMELHO, LOW);
-        digitalWrite(LED_AMARELO, LOW);
+        digitalWrite(LED_VERDE_1, HIGH);
+        digitalWrite(LED_VERDE_2, HIGH);
+        digitalWrite(LED_VERDE_3, HIGH);
+        digitalWrite(LED_VERMELHO_1, LOW);
+        digitalWrite(LED_VERMELHO_2, LOW);
+        digitalWrite(LED_VERMELHO_3, LOW);
+        digitalWrite(LED_AMARELO_1, LOW);
+        digitalWrite(LED_AMARELO_2, LOW);
+        digitalWrite(LED_AMARELO_3, LOW);
       }
       else if (cor == "2"){
-        digitalWrite(LED_VERDE, LOW);
-        digitalWrite(LED_VERMELHO, HIGH);
-        digitalWrite(LED_AMARELO, LOW);
+        digitalWrite(LED_VERDE_1, LOW);
+        digitalWrite(LED_VERDE_2, LOW);
+        digitalWrite(LED_VERDE_3, LOW);
+        digitalWrite(LED_VERMELHO_1, HIGH);
+        digitalWrite(LED_VERMELHO_2, HIGH);
+        digitalWrite(LED_VERMELHO_3, HIGH);
+        digitalWrite(LED_AMARELO_1, LOW);
+        digitalWrite(LED_AMARELO_2, LOW);
+        digitalWrite(LED_AMARELO_3, LOW);
       }
       else{
-        digitalWrite(LED_VERDE, LOW);
-        digitalWrite(LED_VERMELHO, LOW);
-        digitalWrite(LED_AMARELO, HIGH);
+        digitalWrite(LED_VERDE_1, LOW);
+        digitalWrite(LED_VERDE_2, LOW);
+        digitalWrite(LED_VERDE_3, LOW);
+        digitalWrite(LED_VERMELHO_1, LOW);
+        digitalWrite(LED_VERMELHO_2, LOW);
+        digitalWrite(LED_VERMELHO_3, LOW);
+        digitalWrite(LED_AMARELO_1, HIGH);
+        digitalWrite(LED_AMARELO_2, HIGH);
+        digitalWrite(LED_AMARELO_3, HIGH);
       }
       delay(200);
 }
@@ -113,9 +137,15 @@ int MQTT_init(boolean topic_subscribe){
 }
 
 void setup() {
-    pinMode(LED_VERDE, OUTPUT);
-    pinMode(LED_VERMELHO, OUTPUT);
-    pinMode(LED_AMARELO, OUTPUT);
+    pinMode(LED_VERDE_1, OUTPUT);
+    pinMode(LED_VERDE_2, OUTPUT);
+    pinMode(LED_VERDE_3, OUTPUT);
+    pinMode(LED_VERMELHO_1, OUTPUT);
+    pinMode(LED_VERMELHO_2, OUTPUT);
+    pinMode(LED_VERMELHO_3, OUTPUT);
+    pinMode(LED_AMARELO_1, OUTPUT);
+    pinMode(LED_AMARELO_2, OUTPUT);
+    pinMode(LED_AMARELO_3, OUTPUT);
 
     Serial.begin(SERIAL_SPEED);
     delay(100);

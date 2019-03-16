@@ -40,5 +40,8 @@ client.loop_start()
 	
 
 while(True):
-	msg = input()
+	msg = input("\nEscolha a cor:\n1: Verde\n2: Vermelho\n3: Amarelo\n")
+	if(msg == "end"):
+		time.sleep(20)
+		break
 	client.publish("ADA/ArduinoDay", payload=msg, qos=1)
